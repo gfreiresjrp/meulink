@@ -36,6 +36,8 @@ function revalidateClient(clientId: string, slug?: string) {
 export async function login(_prev: ActionState, fd: FormData): Promise<ActionState> {
   const password = String(fd.get("password") ?? "");
   const next = str(fd, "next") || "/admin";
+  if (!process.env.ADMIN_PASSWORD) return { error: "ADMIN_PASSWORD não está configurada no servidor." };
+  if (!process.env.AUTH_SECRET) return { error: "AUTH_SECRET não está configurada no servidor. Cadastre a variável e faça o redeploy." };
   if (!checkPassword(password)) return { error: "Senha incorreta." };
   const store = await cookies();
   store.set(SESSION_COOKIE, await createSessionToken(), sessionCookieOptions);
