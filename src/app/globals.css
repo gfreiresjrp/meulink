@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ===== Paleta oficial ALVEO (Manual de Marca v1.0) ===== */
+  --color-navy: #0b1d3a; /* Azul Marinho — fundo padrão */
+  --color-navy-deep: #13294b; /* Azul Profundo — cards e seções */
+  --color-lime: #c6e31a; /* Verde Lima — destaque (máx. 10% da área) */
+  --color-graphite: #2b2f36; /* Grafite — texto sobre fundo claro */
+  --color-cloud: #e6e8eb; /* Cinza Claro */
+
+  --color-background: #0b1d3a;
+  --color-surface: #13294b;
+  --color-foreground: #ffffff;
+  --color-muted: #9db0c9;
+  --color-line: rgba(255, 255, 255, 0.08);
+
+  --font-display: var(--font-poppins), system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-card: 0 24px 60px -30px rgba(0, 0, 0, 0.7);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-navy);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Régua de destaque: 3–6px de altura, 54–140px de largura, alinhada à esquerda */
+.rule {
+  display: block;
+  width: 54px;
+  height: 4px;
+  background: var(--color-lime);
+  border-radius: 999px;
+}
+
+/* Padrão gráfico: chevron repetido em baixa opacidade (5–10%) */
+.chevrons {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'><path d='M14 52 L36 14 L58 52' fill='none' stroke='%23c6e31a' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-size: 72px 72px;
+  opacity: 0.06;
+}
+
+input,
+select,
+textarea {
+  color-scheme: dark;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-navy);
 }
